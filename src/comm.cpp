@@ -11,8 +11,6 @@ namespace Comm {
 		while (Serial.available()) {
 			char read = (char) Serial.read();
 			if (read == '\n') {
-				Serial.println("Got serial str");
-				Serial.println(str);
 				handle_serial(str);
 				str = "";
 			} else {

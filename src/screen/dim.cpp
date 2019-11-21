@@ -45,13 +45,10 @@ namespace Screen {
 
 		void handle_serial(String str) {
 			if (str[0] == 's') {
-				Serial.println("Got s serial");
 				if (str[1] == '1') {
-					Serial.println("Dimming");
 					enable_dimming = false;
 					wake_screen();
 				} else if (str[1] == '0') {
-					Serial.println("Not Dimming");
 					enable_dimming = true;
 					check_dim();
 				}
