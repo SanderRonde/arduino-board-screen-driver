@@ -73,6 +73,8 @@ namespace Screen {
 			if (msg->event_type == 65) {
 				Screen::Dim::on_touch();
 				handle_click(msg);
+			} else if (msg->event_type == 68) {
+				Screen::Dim::on_touch();
 			}
 
 			free_msg(msg);
