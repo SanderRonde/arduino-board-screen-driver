@@ -3,7 +3,7 @@
 namespace Comm {
 	void handle_serial(String str) {
 		Screen::Comm::handle_serial(str);
-		IR::Comm::handle_serial(str);
+		// IR::Comm::handle_serial(str);
 	}
 
 	void read_serial() {
