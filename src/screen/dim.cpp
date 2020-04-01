@@ -1,4 +1,5 @@
 #include <global.h>
+#include <telnet.h>
 
 #define DO_DIM 1
 #define DIM_TIME 20
@@ -12,7 +13,7 @@ namespace Screen {
 		bool enable_dimming = true;
 		void wake_screen() {
 			if (!is_dimmed) return;
-			Serial.println("# Waking screen");
+			LOGN("Waking screen");
 
 			String dim = "sleep=0";
 			Screen::get_screen().sendCommand(dim.c_str());
@@ -21,7 +22,7 @@ namespace Screen {
 
 		void dim_screen() {
 			if (is_dimmed) return;
-			Serial.println("# Dimming screen");
+			LOGN("Dimming screen");
 
 			String dim = "sleep=1";
 			Screen::get_screen().sendCommand(dim.c_str());
@@ -43,12 +44,12 @@ namespace Screen {
 			}
 		}
 
-		void handle_serial(String str) {
-			if (str[0] == 's') {
-				if (str[1] == '1') {
+		void handle_message(String data) {
+			if (data[0] == 's') {
+				if (data[1] == '1') {
 					enable_dimming = false;
 					wake_screen();
-				} else if (str[1] == '0') {
+				} else if (data[1] == '0') {
 					enable_dimming = true;
 					check_dim();
 				}

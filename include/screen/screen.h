@@ -1,6 +1,6 @@
 #pragma once
 
-#include <screen/comm.h>
+#include <screen/screen_comm.h>
 #include <Nextion.h>
 #include <Arduino.h>
 #include <string.h>

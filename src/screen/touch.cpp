@@ -1,4 +1,6 @@
 #include <global.h>
+#include <telnet.h>
+#include <comm.h>
 
 namespace Screen {
 	namespace Touch {
@@ -41,9 +43,11 @@ namespace Screen {
 			instruction_t ins = ids[msg->id];
 			if (ins.value == -1) return;
 
-			Serial.print(ins.name);
-			Serial.print(" ");
-			Serial.println(ins.value);
+			char* message = (char*) malloc(sizeof(char) * 100);
+			sprintf(message, "%s %d", ins.name, ins.value);
+			Comm::ws.send_message("button", message);
+			
+			free(message);
 		}
 
 		msg_t* parse_msg(String message) {
@@ -68,7 +72,7 @@ namespace Screen {
 			msg_t* msg = parse_msg(message);
 
 			String log_msg = "# " + message;
-			Serial.println(log_msg.c_str());
+			LOGF("Touch: %s\n", log_msg.c_str());
 
 			if (msg->event_type == 65) {
 				Screen::Dim::on_touch();
