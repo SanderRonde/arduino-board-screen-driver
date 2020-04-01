@@ -4,3 +4,8 @@
 .vscode/launch.json
 .vscode/ipch
 .vscode/extensions.json
+
+secrets.h
+ota_secrets.h
+net_secrets.h
+ws_secrets.h

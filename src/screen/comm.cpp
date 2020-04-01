@@ -1,9 +1,9 @@
 #include <global.h>
 
 namespace Screen {
-	namespace Comm {
-		void handle_serial(String str) {
-			Dim::handle_serial(str);
+	namespace ScreenComm {
+		void handle_message(String data) {
+			Dim::handle_message(data);
 		}
 	}
 }

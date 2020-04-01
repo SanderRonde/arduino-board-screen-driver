@@ -8,6 +8,6 @@ namespace Screen {
 	namespace Dim {
 		void on_touch();
 		void check_dim();
-		void handle_serial(String str);
+		void handle_message(String data);
 	}
 }

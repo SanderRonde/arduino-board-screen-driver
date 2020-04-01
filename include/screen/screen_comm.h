@@ -4,7 +4,7 @@
 #include <string.h>
 
 namespace Screen {
-	namespace Comm {
-		void handle_serial(String str);
+	namespace ScreenComm {
+		void handle_message(String data);
 	}
 }
