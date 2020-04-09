@@ -1,0 +1,1 @@
+#define KEY_NAME "room.lights.ceiling"
