@@ -1,4 +1,5 @@
 #include <global.h>
+#include <config.h>
 #include <telnet.h>
 #include <ws.h>
 
@@ -7,7 +8,7 @@ namespace Comm {
 	SemiWebSocket ws = SemiWebSocket(ws_event, 5000, 60 * 1000);
 
 	void handle_messag(String type, String data) {
-		if (type == "screen") {
+		if (type == "valChange") {
 			Screen::ScreenComm::handle_message(data);
 		} else {
 			LOGF("Unknown message %s, %s\n", type.c_str(), data.c_str());
@@ -19,6 +20,7 @@ namespace Comm {
 			LOGF("[WSc] Disconnected!\n");
 		} else if (event == "connected") {
 			LOGF("[WSc] Connected\n");
+			ws.send_message("listen", KEY_NAME);
 		} else if (event == "message") {
 			LOGF("[WSc] get text: %s %s\n", type.c_str(), data.c_str());
 			handle_messag(type, data);
