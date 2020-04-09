@@ -1,7 +1,7 @@
 #include <global.h>
 
 namespace Screen {
-	SoftwareSerial nextion(4, 5);
+	SoftwareSerial nextion(D4, D5);
 	Nextion myNextion(nextion, 9600);
 
 	void setup() {
