@@ -11,13 +11,17 @@ namespace Screen {
 		unsigned long last_touch = 0;
 		bool is_dimmed = false;
 		bool enable_dimming = true;
-		void wake_screen() {
-			if (!is_dimmed) return;
+		void wake_screen(bool force) {
+			if (!is_dimmed && !force) return;
 			LOGN("Waking screen");
 
 			String dim = "sleep=0";
 			Screen::get_screen().sendCommand(dim.c_str());
 			is_dimmed = false;
+		}
+
+		void wake_screen() {
+			wake_screen(false);
 		}
 
 		void dim_screen() {
@@ -45,14 +49,14 @@ namespace Screen {
 		}
 
 		void handle_message(String data) {
-			if (data[0] == 's') {
-				if (data[1] == '1') {
-					enable_dimming = false;
-					wake_screen();
-				} else if (data[1] == '0') {
-					enable_dimming = true;
-					check_dim();
-				}
+			if (atoi(data.c_str()) == 0) {
+				// Ceiling lights are off, dim the screen
+				enable_dimming = true;
+				check_dim();
+			} else {
+				// Ceiling lights are on, wake the screen
+				enable_dimming = false;
+				wake_screen(true);
 			}
 		}
 	}
