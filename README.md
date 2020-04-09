@@ -1,6 +1,6 @@
 # Arduino board screen driver
 
-This repo contains the code for an arduino board driving a touch screen as well as an IR transmitter. The touch screen itself is a [nextion touch screen](https://nextion.tech/). This project interfaces with it through the [nextion library](https://platformio.org/lib/show/1909/Nextion). It listens to the board for any touches and passes them along to the connected serial port.
+This repo contains the code for an arduino board driving a touch screen as well as an IR transmitter. The touch screen itself is a [nextion touch screen](https://nextion.tech/). This project interfaces with it through the [nextion library](https://platformio.org/lib/show/1909/Nextion). It listens to the board for any touches and passes them along through a websocket-like interface.
 
 This project uses [PlatformIO](https://platformio.org/) for simple uploading and interfacing with the board itself.
 
