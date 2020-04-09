@@ -24,9 +24,10 @@ namespace Util {
 
 	void free_split(char** strings) {
 		for (int i = 0; i < SPLIT_LEN; i++) {
-			if (strings[i] != NULL) {
-				free(strings[i]);
+			if (strings[i] == NULL) {
+				break;
 			}
+			free(strings[i]);
 		}
 		free(strings);
 	}

@@ -54,11 +54,16 @@ namespace Screen {
 			char** split = Util::split_string(message);
 			msg_t* msg = (msg_t*) malloc(sizeof(msg_t));
 
-			msg->event_type = strtol(split[0], NULL, 10);
-			msg->screen = strtol(split[1], NULL, 10);
-			msg->id = strtol(split[2], NULL, 16);
-			msg->action = strtol(split[3], NULL, 10);
 			msg->strings = split;
+
+			if (split[0] == NULL) return msg;
+			msg->event_type = strtol(split[0], NULL, 10);
+			if (split[1] == NULL) return msg;
+			msg->screen = strtol(split[1], NULL, 10);
+			if (split[2] == NULL) return msg;
+			msg->id = strtol(split[2], NULL, 16);
+			if (split[3] == NULL) return msg;
+			msg->action = strtol(split[3], NULL, 10);
 			
 			return msg;
 		}
@@ -71,8 +76,7 @@ namespace Screen {
 		void handle_touch_message(String message) {
 			msg_t* msg = parse_msg(message);
 
-			String log_msg = "# " + message;
-			LOGF("Touch: %s\n", log_msg.c_str());
+			LOGF("Touch: \"%s\"\n", message.c_str());
 
 			if (msg->event_type == 65) {
 				Screen::Dim::on_touch();
